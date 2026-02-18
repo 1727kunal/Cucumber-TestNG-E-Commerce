@@ -1,0 +1,13 @@
+pages\SuccessPage.class
+stepdefinitions\LoginSteps.class
+pages\LoginPage.class
+pages\HomePage.class
+stepdefinitions\LoginDataTableSteps.class
+pages\RegisterPage.class
+utilities\FakeDataGenerator.class
+base\DriverManager.class
+stepdefinitions\CommonSteps.class
+stepdefinitions\RegisterSteps.class
+hooks\Hooks.class
+runner\TestRunner.class
+pages\MyAccountPage.class

@@ -18,6 +18,8 @@ import io.cucumber.testng.CucumberOptions;
 public class TestRunner extends AbstractTestNGCucumberTests{
 	
 	 static {
+		 	/*This code is used to set the name with current date and time 
+		 	 * for the extent report HTML and PDF*/
 	        String timestamp = new SimpleDateFormat("ddMMMyyyy_hhmmss")
 	                .format(new Date());
 
@@ -26,10 +28,17 @@ public class TestRunner extends AbstractTestNGCucumberTests{
 
 	        System.setProperty("extent.reporter.pdf.out",
 	                "test-output/PdfReport/ExtentPdf_" + timestamp + ".pdf");
+	        
+	        /*This code is used to set the name with current date and time 
+			  * for the log file*/
+	        System.setProperty("logFileName",
+	                "framework_" +
+	                new SimpleDateFormat("ddMMMyyyy_hhmmss")
+	                        .format(new Date()) + ".log");
 	    }
 
 	@Override
-	@DataProvider(parallel = true)
+	@DataProvider(parallel = false) //Change this to parallel=true to run scenarios in parallel 
 	public Object[][] scenarios() {
 		return super.scenarios();
 	}
