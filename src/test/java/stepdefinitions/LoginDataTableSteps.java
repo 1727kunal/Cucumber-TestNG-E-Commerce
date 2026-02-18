@@ -3,6 +3,8 @@ package stepdefinitions;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import base.DriverManager;
@@ -11,6 +13,8 @@ import io.cucumber.java.en.When;
 import pages.LoginPage;
 
 public class LoginDataTableSteps {
+	
+	private static final Logger logger = LogManager.getLogger(LoginDataTableSteps.class);
 	
 	LoginPage loginPageObj;
 	
@@ -25,16 +29,21 @@ public class LoginDataTableSteps {
 
 		for (Map<String, String> actualData : data) {
 			loginPageObj.enterEmail(actualData.get("email"));
+			logger.info("Email entered...");
 			loginPageObj.enterPassword(actualData.get("password"));
+			logger.info("Password entered...");
 			expectedResult = actualData.get("expected");
 			loginPageObj.clickLoginButton();
+			logger.info("Clicked login button...");
 			boolean status = false;
 			if (expectedResult.equalsIgnoreCase("valid")) {
+				logger.info("Login success...");
 				status = true;
 				Assert.assertTrue(status);
 			}
 
 			else if (expectedResult.equalsIgnoreCase("invalid")) {
+				logger.error("Login failed...");
 				status = false;
 				Assert.assertFalse(status);
 			}
