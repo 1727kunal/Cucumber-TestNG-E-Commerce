@@ -9,5 +9,6 @@ base\DriverManager.class
 stepdefinitions\CommonSteps.class
 stepdefinitions\RegisterSteps.class
 hooks\Hooks.class
+runner\FailedRunner.class
 runner\TestRunner.class
 pages\MyAccountPage.class

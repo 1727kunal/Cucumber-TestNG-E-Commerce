@@ -3,22 +3,19 @@ package runner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.testng.annotations.DataProvider;
-
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = {"src/test/resources/Features"},
+        features = {"@target/FailedScenarios.txt"},
         glue = {"stepdefinitions", "hooks"},
         plugin = {"pretty",
-        		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-        		"rerun:target/FailedScenarios.txt"},
+        		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+        		},
         monochrome = true,
         dryRun = false
 )
-public class TestRunner extends AbstractTestNGCucumberTests{
-	
+public class FailedRunner extends AbstractTestNGCucumberTests{
 	 static {
 		 	/*This code is used to set the name with current date and time 
 		 	 * for the extent report HTML and PDF*/
@@ -38,11 +35,4 @@ public class TestRunner extends AbstractTestNGCucumberTests{
 	                new SimpleDateFormat("ddMMMyyyy_hhmmss")
 	                        .format(new Date()) + ".log");
 	    }
-
-	@Override
-	@DataProvider(parallel = false) //Change this to parallel=true to run scenarios in parallel 
-	public Object[][] scenarios() {
-		return super.scenarios();
-	}
-
 }
